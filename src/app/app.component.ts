@@ -3,30 +3,54 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center" class="content">
+    <main>
       <h1>
-        Welcome to {{title}}!
+        {{ title }}
       </h1>
-      <span style="display: block">{{ title }} app is running!</span>
-      <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-    </div>
-    <h2>Here are some links to help you start: </h2>
-    <ul>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-      </li>
-    </ul>
-    
+      <app-keyboard (update)="onUpdate($event)">
+        keys will go in here
+      </app-keyboard>
+    </main>
   `,
-  styles: []
+  styles: [
+    `
+      :host {
+        box-sizing: border-box;
+        display: grid;
+        padding: 40px;
+        border-radius: 10px;
+        background-color: white;
+        background: linear-gradient(
+            to top,
+            rgba(128, 128, 128, 0.8) 0%,
+            rgba(230, 230, 250, 0.2) 2%,
+            rgba(230, 230, 250, 0.2) 98%,
+            rgba(128, 128, 128, 0.8) 100%
+          ),
+          linear-gradient(
+            to left,
+            rgba(128, 128, 128, 0.8) 0%,
+            rgba(230, 230, 250, 0.8) 1%,
+            rgba(230, 230, 250, 0.8) 99%,
+            rgba(128, 128, 128, 0.8) 100%
+          );
+        box-shadow: 0 1px 5px 0 black;
+      }
+
+      h1 {
+        color: white;
+        text-shadow: 1px 1px 1px black;
+        margin-top: 0;
+      }
+    `,
+  ],
 })
 export class AppComponent {
-  title = 'angular-keyboard';
+  constructor() {}
+
+  onUpdate(e) {
+    console.log(e);
+  }
+
+  public title = 'EJ-ANG-900';
 }
