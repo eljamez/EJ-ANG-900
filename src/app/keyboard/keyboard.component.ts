@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit, HostListener } from '@angular/core';
+import { Synth } from 'tone';
 
 @Component({
   selector: 'app-keyboard',
@@ -41,6 +42,7 @@ import { Component, Inject, OnInit, HostListener } from '@angular/core';
         transition: all 0.2s ease;
         box-shadow: inset 0 3px 1px 0 rgba(0, 0, 0, 0.5);
         transform-origin: top center;
+        perspective: 500px;
       }
 
       .natural {
@@ -48,10 +50,10 @@ import { Component, Inject, OnInit, HostListener } from '@angular/core';
       }
 
       .mousedown {
-        box-shadow: inset 0 5px 10px 0 rgba(0, 0, 0, 1);
+        box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 1);
         background-color: hotpink;
         border-bottom: 1px solid Gainsboro;
-        transform: scaleY(0.99);
+        transform: rotateX(8deg);
       }
     `,
   ],
@@ -64,11 +66,18 @@ export class KeyboardComponent implements OnInit {
     const isActive = this.isNoteActive(pressedKey);
     if (event.type === 'keydown' && !isActive) {
       this.activeKeys.push(pressedKey);
+      this.playNote(this.toneMap[pressedKey]);
     }
     if (event.type === 'keyup' && isActive) {
       this.activeKeys = this.activeKeys.filter((key) => key !== pressedKey);
     }
   }
+
+  playNote(note: string) {
+    this.synth.triggerAttackRelease(note, '8n');
+  }
+
+  synth = new Synth().toMaster();
 
   constructor(@Inject('notes') public notes) {}
 
@@ -100,6 +109,21 @@ export class KeyboardComponent implements OnInit {
     a: 16,
     aS: 18,
     b: 19,
+  };
+
+  toneMap = {
+    c: 'C4',
+    cS: 'C#4',
+    d: 'D4',
+    dS: 'D#4',
+    e: 'E4',
+    f: 'F4',
+    fS: 'F#4',
+    g: 'G4',
+    gS: 'G#4',
+    a: 'A4',
+    aS: 'A#4',
+    b: 'B4',
   };
 
   activeKeys = [];
