@@ -51,7 +51,7 @@ import { Component, Inject, OnInit, HostListener } from '@angular/core';
         box-shadow: inset 0 5px 10px 0 rgba(0, 0, 0, 1);
         background-color: hotpink;
         border-bottom: 1px solid Gainsboro;
-        transform: scale(0.99);
+        transform: scaleY(0.99);
       }
     `,
   ],
@@ -61,10 +61,11 @@ export class KeyboardComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const pressedKey = this.keyNoteMap[event.key];
-    if (!this.isNoteActive(pressedKey)) {
+    const isActive = this.isNoteActive(pressedKey);
+    if (event.type === 'keydown' && !isActive) {
       this.activeKeys.push(pressedKey);
     }
-    if (this.isNoteActive(pressedKey)) {
+    if (event.type === 'keyup' && isActive) {
       this.activeKeys = this.activeKeys.filter((key) => key !== pressedKey);
     }
   }
@@ -118,7 +119,7 @@ export class KeyboardComponent implements OnInit {
     `;
   }
 
-  isNoteActive(activeKey) {
+  isNoteActive(activeKey: string) {
     return this.activeKeys.some((key) => activeKey === key);
   }
 
