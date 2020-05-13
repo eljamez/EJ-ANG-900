@@ -77,7 +77,22 @@ export class KeyboardComponent implements OnInit {
     this.synth.triggerAttackRelease(note, '8n');
   }
 
-  synth = new Synth().toMaster();
+  synthOptions = {
+    oscillator: {
+      frequency: 440,
+      detune: 0,
+      type: 'sine',
+      phase: 0,
+    },
+    envelope: {
+      attack: 0.005,
+      decay: 0.1,
+      sustain: 0.3,
+      release: 1,
+    },
+  };
+
+  synth = new Synth(this.synthOptions).toMaster();
 
   constructor(@Inject('notes') public notes) {}
 
@@ -152,6 +167,7 @@ export class KeyboardComponent implements OnInit {
   }
 
   handleMouseDown(downKey: string) {
+    this.playNote(this.toneMap[downKey]);
     this.activeKeys.push(downKey);
   }
 
