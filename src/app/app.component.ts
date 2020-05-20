@@ -4,17 +4,54 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <main>
-      <h1>
-        {{ title }}
-      </h1>
-      <app-keyboard (update)="onUpdate($event)">
-        keys will go in here
-      </app-keyboard>
+      <section>
+        <h1>
+          {{ title }}
+        </h1>
+        <p>
+          {{ description }}
+        </p>
+        <app-keyboard (update)="onUpdate($event)">
+          keys will go in here
+        </app-keyboard>
+      </section>
+      <footer>
+        <ul>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+        </ul>
+        <p>Built with <a href="https://www.jamescript.com">JameScript</a></p>
+      </footer>
     </main>
   `,
   styles: [
     `
       :host {
+      }
+
+      footer {
+        color: white;
+        box-sizing: border-box;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        max-height: 160px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        display: inline-block;
+      }
+
+      p {
+      }
+
+      section {
         box-sizing: border-box;
         display: grid;
         padding: 40px;
@@ -40,7 +77,12 @@ import { Component } from '@angular/core';
       h1 {
         color: white;
         text-shadow: 1px 1px 1px black;
+        margin: 0 0 10px;
+      }
+
+      p {
         margin-top: 0;
+        margin-bottom: 20px;
       }
     `,
   ],
@@ -53,4 +95,6 @@ export class AppComponent {
   }
 
   public title = 'EJ-ANG-900';
+  public description =
+    'A simple sythesizer built in Angular for your enjoyment';
 }
