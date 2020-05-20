@@ -4,6 +4,8 @@ A simple sythesizer built in Angular for your enjoyment.
 
 Brought to you by [JameScript](https://www.jamescript.com).
 
+TODO: clean up, host somewhere, and more. But it does work 🌶
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
