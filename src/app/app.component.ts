@@ -17,7 +17,9 @@ import { Component } from '@angular/core';
       </section>
       <footer>
         <ul>
-          <li><a href=""></a></li>
+          <li>
+            <a href="https://github.com/eljamez/EJ-ANG-900">View On Github</a>
+          </li>
           <li><a href=""></a></li>
           <li><a href=""></a></li>
         </ul>
